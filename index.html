@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartVenue AI — Antigravity Experience Layer</title>
+  <meta name="description" content="Real-time intelligent assistant reducing crowd congestion, waiting time, and confusion inside large stadiums." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="url(#lg1)"/><path d="M8 14l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#00e5ff"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs></svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">SmartVenue</span>
+          <span class="logo-sub">AI</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-screen="dashboard" id="nav-dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-screen="map" id="nav-map">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+          <span>Live Map</span>
+        </button>
+        <button class="nav-item" data-screen="queues" id="nav-queues">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Queue Monitor</span>
+        </button>
+        <button class="nav-item" data-screen="food" id="nav-food">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <span>Food & Order</span>
+        </button>
+        <button class="nav-item" data-screen="exit" id="nav-exit">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Smart Exit</span>
+        </button>
+        <button class="nav-item" data-screen="alerts" id="nav-alerts">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span>Alerts</span>
+          <span class="nav-badge" id="alert-badge">3</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-event">
+        <div class="event-live-dot"></div>
+        <div class="event-info">
+          <span class="event-name">Finals 2026</span>
+          <span class="event-time">Quarter 3 • 67'</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Top Bar -->
+      <header class="topbar">
+        <button class="menu-btn" id="menu-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title" id="page-title">Dashboard</div>
+        <div class="topbar-right">
+          <div class="capacity-pill">
+            <span class="capacity-dot"></span>
+            <span id="capacity-text">78,450 / 90,000</span>
+          </div>
+          <button class="voice-btn" id="voice-btn" title="Voice Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Screens -->
+      <div class="screens-container">
+
+        <!-- ===== DASHBOARD SCREEN ===== -->
+        <section class="screen active" id="screen-dashboard">
+          <div class="screen-inner">
+            <div class="greeting-bar">
+              <div>
+                <h1 class="greeting-title">Good Evening, Ritam 👋</h1>
+                <p class="greeting-sub">Here's your venue intelligence overview</p>
+              </div>
+              <div class="antigravity-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Antigravity Mode ON
+              </div>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+              <div class="kpi-card kpi-green">
+                <div class="kpi-icon">🟢</div>
+                <div class="kpi-value" id="kpi-gates">Gate 4</div>
+                <div class="kpi-label">Best Entry Gate</div>
+                <div class="kpi-sub">↓ 40% less crowded</div>
+              </div>
+              <div class="kpi-card kpi-cyan">
+                <div class="kpi-icon">⏱️</div>
+                <div class="kpi-value" id="kpi-wait">4 min</div>
+                <div class="kpi-label">Avg Wait Time</div>
+                <div class="kpi-sub">↓ 60% below average</div>
+              </div>
+              <div class="kpi-card kpi-purple">
+                <div class="kpi-icon">🧍</div>
+                <div class="kpi-value" id="kpi-density">87%</div>
+                <div class="kpi-label">Crowd Density</div>
+                <div class="kpi-sub">North Stand full</div>
+              </div>
+              <div class="kpi-card kpi-amber">
+                <div class="kpi-icon">🚪</div>
+                <div class="kpi-value" id="kpi-exit">12 min</div>
+                <div class="kpi-label">Smart Exit ETA</div>
+                <div class="kpi-sub">Section B exits first</div>
+              </div>
+            </div>
+
+            <!-- AI Suggestions -->
+            <div class="section-header">
+              <h2 class="section-title">✨ AI Suggestions</h2>
+              <span class="live-badge">LIVE</span>
+            </div>
+            <div class="suggestions-list" id="suggestions-list">
+              <div class="suggestion-card suggestion-green">
+                <div class="sug-icon">🚶</div>
+                <div class="sug-body">
+                  <div class="sug-title">Use Gate 4 for Entry</div>
+                  <div class="sug-desc">Gate 1 has a 22-min wait. Gate 4 is 40% less crowded right now.</div>
+                </div>
+                <button class="sug-btn">Navigate →</button>
+              </div>
+              <div class="suggestion-card suggestion-cyan">
+                <div class="sug-icon">🍕</div>
+                <div class="sug-body">
+                  <div class="sug-title">Pre-order from Stall C</div>
+                  <div class="sug-desc">Stall A has 18-min queue. Stall C is free — order now, skip the line.</div>
+                </div>
+                <button class="sug-btn">Order →</button>
+              </div>
+              <div class="suggestion-card suggestion-purple">
+                <div class="sug-icon">🚻</div>
+                <div class="sug-body">
+                  <div class="sug-title">Washroom Block D is Free</div>
+                  <div class="sug-desc">2 min walk from your seat. Blocks A & B have 10+ min queues.</div>
+                </div>
+                <button class="sug-btn">Navigate →</button>
+              </div>
+            </div>
+
+            <!-- Quick Stats Row -->
+            <div class="section-header">
+              <h2 class="section-title">📊 Stadium Status</h2>
+            </div>
+            <div class="stats-row">
+              <div class="stat-bar-card">
+                <div class="stat-bar-header">
+                  <span>North Stand</span><span class="stat-pct red-text">96%</span>
+                </div>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:96%;background:var(--red)"></div></div>
+              </div>
+              <div class="stat-bar-card">
+                <div class="stat-bar-header">
+                  <span>South Stand</span><span class="stat-pct amber-text">72%</span>
+                </div>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:72%;background:var(--amber)"></div></div>
+              </div>
+              <div class="stat-bar-card">
+                <div class="stat-bar-header">
+                  <span>East Stand</span><span class="stat-pct green-text">45%</span>
+                </div>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:45%;background:var(--green)"></div></div>
+              </div>
+              <div class="stat-bar-card">
+                <div class="stat-bar-header">
+                  <span>West Stand</span><span class="stat-pct cyan-text">61%</span>
+                </div>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:61%;background:var(--cyan)"></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== MAP SCREEN ===== -->
+        <section class="screen" id="screen-map">
+          <div class="screen-inner">
+            <div class="section-header">
+              <h1 class="section-title">🗺️ Live Stadium Heatmap</h1>
+              <span class="live-badge">LIVE</span>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Crowded</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Moderate</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Free</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--cyan)"></span>Your Route</span>
+            </div>
+            <div class="map-container">
+              <canvas id="stadiumCanvas"></canvas>
+              <div class="map-route-card" id="route-card">
+                <div class="route-card-title">🧭 Smart Route Active</div>
+                <div class="route-card-desc">From <strong>Your Seat (S-14)</strong> → <strong>Gate 4</strong></div>
+                <div class="route-card-time">⏱ ETA: 4 min · 320m · 40% less crowded</div>
+              </div>
+            </div>
+            <div class="map-actions">
+              <button class="btn-primary" id="reroute-btn">🔄 Recalculate Route</button>
+              <button class="btn-ghost" id="toggle-heatmap-btn">Toggle Heatmap</button>
+            </div>
+            <div class="zone-cards-grid">
+              <div class="zone-card zone-red"><div class="zone-name">North Gate</div><div class="zone-status">🔴 Very Crowded</div><div class="zone-wait">Wait: 22 min</div></div>
+              <div class="zone-card zone-amber"><div class="zone-name">South Gate</div><div class="zone-status">🟡 Moderate</div><div class="zone-wait">Wait: 9 min</div></div>
+              <div class="zone-card zone-green"><div class="zone-name">East Gate 4</div><div class="zone-status">🟢 Free</div><div class="zone-wait">Wait: 2 min</div></div>
+              <div class="zone-card zone-green"><div class="zone-name">West Gate 7</div><div class="zone-status">🟢 Free</div><div class="zone-wait">Wait: 3 min</div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== QUEUES SCREEN ===== -->
+        <section class="screen" id="screen-queues">
+          <div class="screen-inner">
+            <div class="section-header">
+              <h1 class="section-title">⏳ Smart Queue Monitor</h1>
+              <span class="live-badge">AI-PREDICTED</span>
+            </div>
+            <p class="screen-desc">AI predicts wait times using historical data + live crowd density sensors.</p>
+
+            <h2 class="sub-section-title">🍔 Food Stalls</h2>
+            <div class="queue-list" id="queue-food-list"></div>
+
+            <h2 class="sub-section-title">🚻 Washrooms</h2>
+            <div class="queue-list" id="queue-wash-list"></div>
+
+            <h2 class="sub-section-title">🎟️ Entry Gates</h2>
+            <div class="queue-list" id="queue-gate-list"></div>
+          </div>
+        </section>
+
+        <!-- ===== FOOD SCREEN ===== -->
+        <section class="screen" id="screen-food">
+          <div class="screen-inner">
+            <div class="section-header">
+              <h1 class="section-title">🍕 Food & Pre-Order</h1>
+              <div class="cart-btn" id="cart-btn">
+                🛒 <span id="cart-count">0</span>
+              </div>
+            </div>
+            <p class="screen-desc">Order ahead, skip the queue. Your food will be ready at your pickup slot.</p>
+            <div class="stall-tabs">
+              <button class="stall-tab active" data-stall="all">All Stalls</button>
+              <button class="stall-tab" data-stall="A">Stall A</button>
+              <button class="stall-tab" data-stall="B">Stall B</button>
+              <button class="stall-tab" data-stall="C">Stall C</button>
+            </div>
+            <div class="food-grid" id="food-grid"></div>
+            <!-- Cart Panel -->
+            <div class="cart-panel glass" id="cart-panel">
+              <div class="cart-panel-header">
+                <h3>🛒 Your Order</h3>
+                <button id="close-cart">✕</button>
+              </div>
+              <div id="cart-items-list"></div>
+              <div class="cart-total" id="cart-total"></div>
+              <div class="pickup-slot">
+                <span>📍 Pickup Slot:</span>
+                <strong>Stall C · Counter 2 · ~3 min</strong>
+              </div>
+              <button class="btn-primary full-width" id="place-order-btn">⚡ Place Order (Skip Queue)</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== EXIT SCREEN ===== -->
+        <section class="screen" id="screen-exit">
+          <div class="screen-inner">
+            <div class="section-header">
+              <h1 class="section-title">🚪 Smart Exit System</h1>
+              <span class="live-badge">ACTIVE</span>
+            </div>
+            <p class="screen-desc">AI assigns staggered exit timings to prevent bottlenecks and reduce crowd pressure.</p>
+            <div class="exit-timer-card glass">
+              <div class="exit-your-section">Your Section: <strong>B-14</strong></div>
+              <div class="exit-countdown-label">Your Exit Window Opens In</div>
+              <div class="exit-countdown" id="exit-countdown">05:30</div>
+              <div class="exit-gate-info">Proceed to <strong>East Gate 4</strong> · ETA 3 min walk</div>
+              <div class="exit-incentive">🎁 Stay 5 more min → Get 15% discount on next match ticket!</div>
+            </div>
+            <h2 class="sub-section-title">All Section Timings</h2>
+            <div class="exit-sections-grid" id="exit-sections-grid"></div>
+            <div class="section-header" style="margin-top:1.5rem">
+              <h2 class="section-title">🚨 Emergency Evacuation</h2>
+            </div>
+            <div class="evacuation-card glass">
+              <div class="evac-status">✅ All Clear — No Emergency</div>
+              <div class="evac-desc">In case of emergency, AI will instantly push safe route notifications to all users with the fastest path to nearest exit.</div>
+              <button class="btn-ghost" style="margin-top:1rem">View Evacuation Routes</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ALERTS SCREEN ===== -->
+        <section class="screen" id="screen-alerts">
+          <div class="screen-inner">
+            <div class="section-header">
+              <h1 class="section-title">🔔 Alerts & Events</h1>
+              <button class="btn-ghost small" id="clear-alerts-btn">Clear All</button>
+            </div>
+            <div class="alerts-list" id="alerts-list"></div>
+          </div>
+        </section>
+
+      </div><!-- end screens-container -->
+    </main>
+  </div><!-- end app-shell -->
+
+  <!-- Voice Assistant Modal -->
+  <div class="voice-overlay" id="voice-overlay">
+    <div class="voice-modal glass">
+      <button class="voice-close" id="voice-close">✕</button>
+      <div class="voice-title">🎤 AI Voice Assistant</div>
+      <div class="voice-orb" id="voice-orb">
+        <div class="voice-ring"></div>
+        <div class="voice-ring ring-2"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <div class="voice-prompt" id="voice-prompt">Tap to speak...</div>
+      <div class="voice-response" id="voice-response"></div>
+      <div class="voice-suggestions">
+        <span class="voice-chip" data-q="Where is the nearest free washroom?">Nearest free washroom?</span>
+        <span class="voice-chip" data-q="Which food stall has no queue?">No-queue food stall?</span>
+        <span class="voice-chip" data-q="When should I exit?">When should I exit?</span>
+        <span class="voice-chip" data-q="Which gate is least crowded?">Least crowded gate?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="map.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
